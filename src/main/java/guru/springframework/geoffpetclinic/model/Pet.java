@@ -17,7 +17,7 @@ public class Pet {
     }
 
     public Owner getOwner() {
-        return owner;
+        return  owner;
     }
 
     public void setOwner(Owner owner) {
