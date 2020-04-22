@@ -51,7 +51,7 @@
     </build>
 
     <scm>
-        <developerConnection>scm:git:ssh://git@github.com:yesiamanerd/geoff-pet-clinic.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:yesiamanerd/geoff-pet-clinic.git</developerConnection>
       <tag>geoff-pet-clinic-0.0.1</tag>
   </scm>
 
