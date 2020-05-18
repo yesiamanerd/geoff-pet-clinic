@@ -1,10 +1,7 @@
 package guru.springframework.geoffpetclinic.bootstrap;
 
 import guru.springframework.geoffpetclinic.model.*;
-import guru.springframework.geoffpetclinic.services.OwnerService;
-import guru.springframework.geoffpetclinic.services.PetTypeService;
-import guru.springframework.geoffpetclinic.services.SpecialtiesService;
-import guru.springframework.geoffpetclinic.services.VetService;
+import guru.springframework.geoffpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,14 +14,17 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtiesService specialtiesService;
+    private final VisitService visitService;
 
     // @Autowired is not required for Spring5
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtiesService specialtiesService){
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      SpecialtiesService specialtiesService, VisitService visitService){
 
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtiesService = specialtiesService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -91,6 +91,11 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(fionnasPet);
 
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(fionnasPet);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("sneezy kitty");
 
         System.out.println("Loaded Owners ....");
 
