@@ -52,7 +52,16 @@ public class OwnerController {
         }
 
         // find owners by last name
-        List<Owner> results = ownerService.findAllByLastNameLike(owner.getLastName());
+        List<Owner> results;
+        // check if owner field is blank
+        if(owner.getLastName().isEmpty()) {
+            results = ownerService.findAllByLastNameLike("%" + owner.getLastName() + "%");
+        } else {
+            results = ownerService
+                    .findAllByLastNameLike("%" +
+                            owner.getLastName().substring(0,1).toUpperCase() +
+                            owner.getLastName().substring(1).toLowerCase() + "%");
+        }
 
         if (results.isEmpty()) {
             // no owners found
